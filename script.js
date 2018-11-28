@@ -26,8 +26,8 @@ function geo_error() {
 
 var geo_options = {
     enableHighAccuracy: true,
-    maximumAge: 30000,
-    timeout: 27000
+    maximumAge: 0,
+    timeout: 5000
 };
 
 var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
