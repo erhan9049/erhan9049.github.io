@@ -13,7 +13,7 @@ function geo_success(position) {
     accuracyDisplay.innerHTML = position.coords.accuracy;
     timestampDisplay.innerHTML = position.timestamp;
 
-    if (position.coords.accuracy >= 10) {
+    if (Number(position.coords.accuracy) >= 10) {
         console.log('red');
         accuracyDisplay.className = 'redText';
     } else {
