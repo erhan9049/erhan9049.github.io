@@ -21,6 +21,7 @@
 
         function geo_success(position) {
             display.innerHTML = position.coords.latitude + ', ' + position.coords.longitude;
+            console.log(position);
         }
 
         function geo_error() {
