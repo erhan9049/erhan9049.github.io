@@ -15,8 +15,10 @@ function geo_success(position) {
 
     if (position.coords.accuracy >= 10) {
         console.log('red');
+        accuracyDisplay.className = 'redText';
     } else {
         console.log('green');
+        accuracyDisplay.className = 'greenText';
     }
 }
 
