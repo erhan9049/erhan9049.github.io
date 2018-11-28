@@ -8,9 +8,26 @@
 </head>
 
 <body>
+    <label for="coordinatesDisplay">Coordinates:</label>
     <p id="coordinatesDisplay"></p>
+    <label for="accuracyDisplay">Accuracy(meters):</label>
     <p id="accuracyDisplay"></p>
+    <label for="timestampDisplay">Time Stamp of Geolocation Reading:</label>
     <p id="timestampDisplay"></p>
+    <button id="fillFormButton" onclick="fillForm()"></button>
+
+    <div class="form">
+        <label for="latitudeTextbox">Latitude:</label>
+        <input type="text" id="latitudeTextbox">
+        <br>
+        <label for="longitudeTextbox">Longitude:</label>
+        <input type="text" id="longitudeTextbox">
+        <br>
+        <label for="nameTextbox">Name:</label>
+        <input type="text" id="nameTextbox"> .kolaykonum.com
+        <br>
+        <button id="saveButton" onclick="saveButtonClicked()">Save Position</button>
+    </div>
 
     <script src="script.js"></script>
 </body>
