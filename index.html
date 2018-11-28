@@ -7,21 +7,25 @@
 </head>
 
 <body>
-    <p>...</p>
-    <p id="display"></p>
+    <p id="coordinatesDisplay"></p>
+    <p id="accuracyDisplay"></p>
+    <p id="timestampDisplay"></p>
 
     <script>
-        var display = document.getElementById('display');
+        var coordinatesDisplay = document.getElementById('coordinatesDisplay');
+        var accuracyDisplay = document.getElementById('accuracyDisplay');
+        var timestampDisplay = document.getElementById('timestampDisplay');
 
         if ("geolocation" in navigator) {
-            display.innerHTML = 'geolocation is available';
+            coordinatesDisplay.innerHTML = 'geolocation is available';
         } else {
-            display.innerHTML = 'geolocation unavailable';
+            coordinatesDisplay.innerHTML = 'geolocation unavailable';
         }
 
         function geo_success(position) {
-            display.innerHTML = position.coords.latitude + ', ' + position.coords.longitude;
-            console.log(position);
+            coordinatesDisplay.innerHTML = position.coords.latitude + ', ' + position.coords.longitude;
+            accuracyDisplay.innerHTML = position.coords.accuracy;
+            timestampDisplay.innerHTML = position.timestamp;
         }
 
         function geo_error() {
@@ -35,29 +39,6 @@
         };
 
         var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
-
-
-
-
-
-        // demo();     
-
-        // async function demo() {
-        //     console.log('Taking a break...');
-        //     await sleep(500);
-        //     console.log('Half second later');
-        //     displayCoordinates();
-        // }
-
-        // function sleep(ms) {
-        //     return new Promise(resolve => setTimeout(resolve, ms));
-        // }
-
-        // function displayCoordinates() {
-        //     navigator.geolocation.getCurrentPosition(function (position) {
-        //         display.innerHTML = position.coords.latitude + ', ' + position.coords.longitude;
-        //     });
-        // }
     </script>
 </body>
 
