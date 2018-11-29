@@ -46,7 +46,7 @@ var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, geo_optio
 function saveButtonClicked() {
     resultLabel.innerHTML = ' was created for: ' + latitudeTextbox.value + ', ' + longitudeTextbox.value;
     var nameWithoutSpaces = nameTextbox.value.replace(/\s/g, '');
-    resultLink.innerHTML = nameWithoutSpaces + '.kolaykonum.com';
+    resultLink.innerHTML = nameWithoutSpaces.toLowerCase() + '.kolaykonum.com';
     if (/android/i.test(userAgent)) {
         resultLink.setAttribute('href', 'geo:' + latitude + ',' + longitude + '?q=' + latitude + ',' + longitude + '(' + nameWithoutSpaces + ')')
     }
