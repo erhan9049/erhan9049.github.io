@@ -1,39 +1,27 @@
-var latitudeDisplay = document.getElementById('latitudeDisplay');
-var longitudeDisplay = document.getElementById('longitudeDisplay');
 var accuracyDisplay = document.getElementById('accuracyDisplay');
-var timestampDisplay = document.getElementById('timestampDisplay');
 var saveButton = document.getElementById('saveButton');
+var fillFormButton = document.getElementById('fillFormButton');
+var resultLink = document.getElementById('resultLink');
+var resultLabel = document.getElementById('resultLabel');
 
 var longitudeTextbox = document.getElementById('longitudeTextbox');
 var latitudeTextbox = document.getElementById('latitudeTextbox');
 var nameTextbox = document.getElementById('nameTextbox');
 
-// Android href = "geo:38.332412,27.120925?q=38.332412,27.120925(Yo+Yo)"
-// iOS href = "https://maps.apple.com/?ll=38.332412,27.120925&q={Yo+Yo}"
-// Others href = "https://www.google.com/maps/search/?api=1&query=47.5951518,-122.3316393"
-
-var testLink = document.getElementById('testLink');
-var osLabel = document.getElementById('osLabel');
 var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
 if (/android/i.test(userAgent)) {
     testLink.setAttribute('href', 'geo:38.332412,27.120925?q=38.332412,27.120925(Yo+Yo)');
-    osLabel.innerHTML = 'Android device';
 }
 else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
     testLink.setAttribute('href', 'https://maps.apple.com/?ll=38.332412,27.120925&q={Yo+Yo}');
-    osLabel.innerHTML = 'iOS device';
 }
 else {
     testLink.setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=38.332412,27.120925');
-    osLabel.innerHTML = 'Other device';
 }
 
 function geo_success(position) {
-    latitudeDisplay.innerHTML = position.coords.latitude;
-    longitudeDisplay.innerHTML = position.coords.longitude;
     accuracyDisplay.innerHTML = position.coords.accuracy;
-    timestampDisplay.innerHTML = position.timestamp;
 
     if (Number(position.coords.accuracy) >= 10) {
         console.log('red');
@@ -59,7 +47,18 @@ var geo_options = {
 var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
 
 function saveButtonClicked() {
-    console.log(nameTextbox.value + '.kolaykonum.com was created for: ' + latitudeTextbox.value + ', ' + longitudeTextbox.value);
+    resultLabel.innerHTML = nameTextbox.value + '.kolaykonum.com was created for: ' + latitudeTextbox.value + ', ' + longitudeTextbox.value;
+    resultLink.innerHTML = nameTextbox.value + 'kolaykonum.com';
+    if (/android/i.test(userAgent)) {
+        resultLink.setAttribute('href', 'geo:38.332412,27.120925?q=38.332412,27.120925(Yo+Yo)')
+    }
+    else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        resultLink.setAttribute('href', 'https://maps.apple.com/?ll=38.332412,27.120925&q={Yo+Yo}')
+    }
+    else {
+        resultLink.setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=38.332412,27.120925')
+    }
+    
 }
 
 function fillForm() {

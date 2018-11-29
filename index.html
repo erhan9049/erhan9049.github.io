@@ -8,44 +8,29 @@
 </head>
 
 <body>
-    <p id="osLabel"></p>
-    <a href="" id="testLink">test link</a>
+    <p id="geolocationReadCounter"></p>
     <br>
-    <label for="latitudeDisplay">Latitude:</label>
-    <p id="latitudeDisplay"></p>
-    <label for="longitudeDisplay">Longitude:</label>
-    <p id="longitudeDisplay"></p>
     <label for="accuracyDisplay">Accuracy(meters):</label>
     <p id="accuracyDisplay"></p>
-    <label for="timestampDisplay">Time Stamp of Geolocation Reading:</label>
-    <p id="timestampDisplay"></p>
     <button id="fillFormButton" onclick="fillForm()">Fill Form</button>
 
     <div class="form">
         <label for="latitudeTextbox">Latitude:</label>
         <input type="text" id="latitudeTextbox">
-        <br>
+        <br><br>
         <label for="longitudeTextbox">Longitude:</label>
         <input type="text" id="longitudeTextbox">
-        <br>
+        <br><br>
         <label for="nameTextbox">Name:</label>
         <input type="text" id="nameTextbox"> .kolaykonum.com
-        <br>
+        <br><br>
         <button id="saveButton" onclick="saveButtonClicked()">Save Position</button>
-
-        <br>
-        <br>
-        <a href="maps:38.332412,27.120925">iOS test without query</a>
-        <br>
-        <br>
-        <a href="maps:38.332412,27.120925?q=38.332412,27.120925(Yo+Yo)">iOS test with query</a>
-        <br>
-        <br>
-        <a href="http://maps.apple.com/?ll=38.332412,27.120925&q={Yo+Yo}">iOS test maps.apple.com with query</a>
-        <br>
-        <br>
-        <a href="http://maps.apple.com/?ll=38.332412,27.120925">iOS test maps.apple.com without query</a>
     </div>
+    <br>
+    <br>
+    <p id="resultLabel"></p>
+    <br><br>
+    <a href="" id="resultLink"></a>
 
     <script src="script.js"></script>
 </body>
