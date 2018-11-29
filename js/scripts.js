@@ -14,7 +14,7 @@ var longitude;
 var accuracy;
 var name;
 var wpid;
-var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
 
 function startClicked() {
     welcomeScreen.style.display = "none";
@@ -55,6 +55,8 @@ function saveClicked() {
 
     resultLink.innerHTML = name + '.kolaykonum.com';
 
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
     if (/android/i.test(userAgent)) {
         resultLink.setAttribute('href', 'geo:' + latitude + ',' + longitude + '?q=' + latitude + ',' + longitude + '(' + nameWithoutSpaces + ')')
     }
