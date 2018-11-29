@@ -20,14 +20,14 @@ function geo_success(position) {
     longitude = position.coords.longitude;
     accuracyDisplay.innerHTML = position.coords.accuracy;
 
-    if (Number(position.coords.accuracy) >= 10000) {
+    if (Number(position.coords.accuracy) >= 10) {
         console.log('red');
         accuracyDisplay.className = 'redText';
-        fillFormButton.disabled = true;
+        // fillFormButton.disabled = true;
     } else {
         console.log('green');
         accuracyDisplay.className = 'greenText';
-        fillFormButton.disabled = false;
+        // fillFormButton.disabled = false;
     }
 }
 
@@ -45,17 +45,18 @@ var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, geo_optio
 
 function saveButtonClicked() {
     resultLabel.innerHTML = ' was created for: ' + latitudeTextbox.value + ', ' + longitudeTextbox.value;
-    resultLink.innerHTML = nameTextbox.value + '.kolaykonum.com';
+    var nameWithoutSpaces = nameTextbox.value.replace(/\s/g, '');
+    resultLink.innerHTML = nameWithoutSpaces + '.kolaykonum.com';
     if (/android/i.test(userAgent)) {
-        resultLink.setAttribute('href', 'geo:38.332412,27.120925?q=38.332412,27.120925(Yo+Yo)')
+        resultLink.setAttribute('href', 'geo:' + latitude + ',' + longitude + '?q=' + latitude + ',' + longitude + '(' + nameWithoutSpaces + ')')
     }
     else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        resultLink.setAttribute('href', 'https://maps.apple.com/?ll=38.332412,27.120925&q={Yo+Yo}')
+        resultLink.setAttribute('href', 'https://maps.apple.com/?ll=' + latitude + ',' + longitude + '&q={' + nameWithoutSpaces + '}')
     }
     else {
-        resultLink.setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=38.332412,27.120925')
+        resultLink.setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=' + latitude + ',' + longitude)
     }
-    
+
 }
 
 function fillForm() {
