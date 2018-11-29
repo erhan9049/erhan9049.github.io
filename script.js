@@ -8,11 +8,26 @@ var longitudeTextbox = document.getElementById('longitudeTextbox');
 var latitudeTextbox = document.getElementById('latitudeTextbox');
 var nameTextbox = document.getElementById('nameTextbox');
 
-// if ("geolocation" in navigator) {
-//     coordinatesDisplay.innerHTML = 'geolocation is available';
-// } else {
-//     coordinatesDisplay.innerHTML = 'geolocation unavailable';
-// }
+// Android href = "geo:38.332412,27.120925?q=38.332412,27.120925(Yo+Yo)"
+// iOS href = "https://maps.apple.com/?ll=38.332412,27.120925&q={Yo+Yo}"
+// Others href = "https://www.google.com/maps/search/?api=1&query=47.5951518,-122.3316393"
+
+var testLink = document.getElementById('testLink');
+var osLabel = document.getElementById('osLabel');
+var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+if (/android/i.test(userAgent)) {
+    testLink.setAttribute('href', 'geo:38.332412,27.120925?q=38.332412,27.120925(Yo+Yo)');
+    osLabel.innerHTML = 'Android device';
+}
+else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    testLink.setAttribute('href', 'https://maps.apple.com/?ll=38.332412,27.120925&q={Yo+Yo}');
+    osLabel.innerHTML = 'iOS device';
+}
+else {
+    testLink.setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=38.332412,27.120925');
+    osLabel.innerHTML = 'Other device';
+}
 
 function geo_success(position) {
     latitudeDisplay.innerHTML = position.coords.latitude;
@@ -49,5 +64,5 @@ function saveButtonClicked() {
 
 function fillForm() {
     latitudeTextbox.value = latitudeDisplay.innerHTML;
-    longitudeTextbox.value = longitudeDisplay.innerHTML;    
+    longitudeTextbox.value = longitudeDisplay.innerHTML;
 }
