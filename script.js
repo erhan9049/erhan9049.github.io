@@ -3,6 +3,7 @@ var saveButton = document.getElementById('saveButton');
 var fillFormButton = document.getElementById('fillFormButton');
 var resultLink = document.getElementById('resultLink');
 var resultLabel = document.getElementById('resultLabel');
+var geolocationReadCounter = document.getElementById('geolocationReadCounter');
 
 var longitudeTextbox = document.getElementById('longitudeTextbox');
 var latitudeTextbox = document.getElementById('latitudeTextbox');
@@ -22,6 +23,7 @@ else {
 
 function geo_success(position) {
     accuracyDisplay.innerHTML = position.coords.accuracy;
+    geolocationReadCounter.innerHTML += '.';
 
     if (Number(position.coords.accuracy) >= 10) {
         console.log('red');
