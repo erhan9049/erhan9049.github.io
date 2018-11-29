@@ -58,10 +58,10 @@ function saveClicked() {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
     
     if (/android/i.test(userAgent)) {
-        resultLink.setAttribute('href', 'geo:' + latitude + ',' + longitude + '?q=' + latitude + ',' + longitude + '(' + nameWithoutSpaces + ')')
+        resultLink.setAttribute('href', 'geo:' + latitude + ',' + longitude + '?q=' + latitude + ',' + longitude + '(' + name + ')')
     }
     else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        resultLink.setAttribute('href', 'https://maps.apple.com/?ll=' + latitude + ',' + longitude + '&q={' + nameWithoutSpaces + '}')
+        resultLink.setAttribute('href', 'https://maps.apple.com/?ll=' + latitude + ',' + longitude + '&q={' + name + '}')
     }
     else {
         resultLink.setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=' + latitude + ',' + longitude)
