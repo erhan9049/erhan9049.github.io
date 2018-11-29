@@ -9,23 +9,18 @@ var longitudeTextbox = document.getElementById('longitudeTextbox');
 var latitudeTextbox = document.getElementById('latitudeTextbox');
 var nameTextbox = document.getElementById('nameTextbox');
 
+var latitude;
+var longitude;
+
 var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-if (/android/i.test(userAgent)) {
-    testLink.setAttribute('href', 'geo:38.332412,27.120925?q=38.332412,27.120925(Yo+Yo)');
-}
-else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    testLink.setAttribute('href', 'https://maps.apple.com/?ll=38.332412,27.120925&q={Yo+Yo}');
-}
-else {
-    testLink.setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=38.332412,27.120925');
-}
-
 function geo_success(position) {
-    accuracyDisplay.innerHTML = position.coords.accuracy;
     geolocationReadCounter.innerHTML += '.';
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    accuracyDisplay.innerHTML = position.coords.accuracy;
 
-    if (Number(position.coords.accuracy) >= 10) {
+    if (Number(position.coords.accuracy) >= 10000) {
         console.log('red');
         accuracyDisplay.className = 'redText';
         fillFormButton.disabled = true;
@@ -49,8 +44,8 @@ var geo_options = {
 var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
 
 function saveButtonClicked() {
-    resultLabel.innerHTML = nameTextbox.value + '.kolaykonum.com was created for: ' + latitudeTextbox.value + ', ' + longitudeTextbox.value;
-    resultLink.innerHTML = nameTextbox.value + 'kolaykonum.com';
+    resultLabel.innerHTML = ' was created for: ' + latitudeTextbox.value + ', ' + longitudeTextbox.value;
+    resultLink.innerHTML = nameTextbox.value + '.kolaykonum.com';
     if (/android/i.test(userAgent)) {
         resultLink.setAttribute('href', 'geo:38.332412,27.120925?q=38.332412,27.120925(Yo+Yo)')
     }
@@ -64,6 +59,6 @@ function saveButtonClicked() {
 }
 
 function fillForm() {
-    latitudeTextbox.value = latitudeDisplay.innerHTML;
-    longitudeTextbox.value = longitudeDisplay.innerHTML;
+    latitudeTextbox.value = latitude;
+    longitudeTextbox.value = longitude;
 }
