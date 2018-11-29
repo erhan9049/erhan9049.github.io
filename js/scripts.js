@@ -38,7 +38,7 @@ function geo_success(position) {
     accuracy = position.coords.accuracy;
     accuracyDisplay.innerHTML = accuracy;
 
-    if (Number(accuracy) < 10000) {
+    if (Number(accuracy) < 5) {
         getLocationScreen.style.display = "none";
         saveLocationScreen.style.display = "block";
         latitudeTextbox.value = latitude.toString().slice(0, 9);
